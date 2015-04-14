@@ -9,6 +9,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.hnebang.android.ebrtsp2livelib.RtspH264Processor;
+
 /**
  * Servlet implementation class Rtsp2Rtmp
  */
@@ -31,17 +33,14 @@ public class Rtsp2Rtmp extends HttpServlet {
 		PrintWriter pw = response.getWriter();
 		String IP = request.getParameter("ip");
 		String cameraID = request.getParameter("cameraID");
-		String rtspUrl = "rtsp://" + IP + ":554/AmbaStreamTest";
-		String rtmpUrl = "rtmp://127.0.0.1:1935/live/" + cameraID;
+		//String rtspUrl = "rtsp://" + IP + ":554/AmbaStreamTest";
+		//String rtmpUrl = "rtmp://127.0.0.1:1935/live/" + cameraID;
 		
-		// create tasks
-		Runnable task = new Rtsp2RtmpTask(rtspUrl, rtmpUrl);
+		System.out.println(IP + " " + cameraID);
 		
-		// create threads
-		Thread thread = new Thread(task);
-		
-		// start threads
-		thread.start();
+//		ProcessorCallback callback = new ProcessorCallback();
+		//RtspH264Processor h264Processor = new RtspH264Processor(null, rtspUrl);
+		//h264Processor.asyncStartPublish(rtmpUrl, "");
 		
 		pw.write("OK");
 		pw.flush();
