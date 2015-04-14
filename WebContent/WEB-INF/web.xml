@@ -4,13 +4,21 @@
   <welcome-file-list>
     <welcome-file>index.jsp</welcome-file>
   </welcome-file-list>
-
   <servlet>
-      <servlet-name>CameraStatus</servlet-name>
-      <servlet-class>CameraStatus</servlet-class>
+    <servlet-name>CameraStatus</servlet-name>
+    <servlet-class>CameraStatus</servlet-class>
   </servlet>
   <servlet-mapping>
-      <servlet-name>CameraStatus</servlet-name>
-      <url-pattern>/CameraStatus</url-pattern>
+    <servlet-name>CameraStatus</servlet-name>
+    <url-pattern>/CameraStatus</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+    <servlet-name>Rtsp2Rtmp</servlet-name>
+    <servlet-class>Rtsp2Rtmp</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>Rtsp2Rtmp</servlet-name>
+    <url-pattern>/Rtsp2Rtmp</url-pattern>
   </servlet-mapping>
 </web-app>
