@@ -40,12 +40,12 @@
     		  if (tmpList[4] === 'ON') {
     			  html += '<td class="text-success">ON</td>';
     			  html += '<td><a class="btn btn-success" href="player.jsp?name=' + tmpList[0] + '" role="button" target="_blank">Preview</a></td>';
-    			  html += '<td><button type="button" class="btn btn-success" onclick="onPush(\'' + tmpList[2] + '\', \'' + tmpList[0] + '\')">Push</td>';
+    			  html += '<td><button id="' + tmpList[0] + '" type="button" class="btn btn-success" onclick="onPush(\'' + tmpList[2] + '\', \'' + tmpList[0] + '\')">Push</td>';
     		  } else {
     			  // unclickable
     			  html += '<td class="text-danger">OFF</td>';
     			  html += '<td><button type="button" class="btn btn-warning">Preview</button></td>'
-    			  html += '<td><button type="button" class="btn btn-warning" onclick="onPush()">Push</button></td>'
+    			  html += '<td><button id="' + tmpList[0] + '" type="button" class="btn btn-warning" onclick="onPush()">Push</button></td>'
     		  }
     		  html += '</tr>';
     	  }
@@ -55,19 +55,20 @@
       
       function onPush(ip, cameraID) {
     	  if (ip && cameraID) {
-    		  alert('with params');
+    		  console.log('with params');
  	        $.ajax({
  	            contentType:"UTF-8",
  	            type:"post",
- 	            url:"http://localhost:8080/CameraManager/Rtsp2Rtmp",
+ 	            url:"http://localhost:8080/CameraManager/Rtsp2Rtmp?ip=" + ip + "&cameraID=" + cameraID,
  	            success : function(data){
  	            	// TO-DO
- 	            },error:function(req,msg){
+ 	            	$("#" + cameraID).attr("class", "btn btn-info");
+ 	            },error:function(req, msg){
  	             console.log(msg);
  	            }
  	          });
     	  } else {
-    		  alert('without params');
+    		  console.log("without params");
     	  }
       }
 
