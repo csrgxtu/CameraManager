@@ -38,10 +38,10 @@
     		  html += '<td>' + tmpList[2] + '</td>'; // ip
     		  if (tmpList[3] == 'ON') {
     			  html += '<td class="text-success">ON</td>';
-    			  html += '<td><button type="button" class="btn btn-success">Preview</button></td>';
+    			  html += '<td><a class="btn btn-success" href="player.jsp?name=" role="button">Preview</a></td>';
     		  } else {
     			  html += '<td class="text-danger">OFF</td>';
-    			  html += '<td><button type="button" class="btn btn-warning">Preview</button></td>';
+    			  html += '<td><a class="btn btn-warning" href="player.jsp?name=" role="button">Preview</a></td>';
     		  }
     		  html += '</tr>';
     	  }
@@ -68,26 +68,12 @@
             <td>01:f3:45:67:89:ab</td>
             <td>192.168.10.97</td>
             <td class="text-danger">OFF</td>
-            <td><button type="button" class="btn btn-warning">Preview</button></td>
+            <td><a class="btn btn-warning" href="player.jsp" role="button">Preview</a></td>
           </tr>
           <tr>
             <td>Amba#2</td>
             <td>rt:23:45:67:89:ab</td>
             <td>192.168.10.98</td>
-            <td class="text-success">ON</td>
-            <td><button type="button" class="btn btn-success">Preview</button></td>
-          </tr>
-          <tr>
-            <td>Amba#3</td>
-            <td>df:23:45:67:89:ab</td>
-            <td>192.168.10.99</td>
-            <td class="text-danger">OFF</td>
-            <td><button type="button" class="btn btn-warning">Preview</button></td>
-          </tr>
-          <tr>
-            <td>Amba#4</td>
-            <td>0f:f3:45:67:89:ab</td>
-            <td>192.168.10.100</td>
             <td class="text-success">ON</td>
             <td><button type="button" class="btn btn-success">Preview</button></td>
           </tr>
