@@ -14,32 +14,55 @@
     <script src="static/js/bootstrap.min.js"></script>
   </head>
   <script type="text/javascript">
-      function show(){
-           $.ajax({
-             contentType:"UTF-8",
-             type:"post",
-             url:"http://localhost:8080/CameraManager/CameraStatus",
-             success : function(data){
-            	 console.log(data);
-             },error:function(req,msg){
-            	 console.log(msg);
-             }
-           });
+      function getCameraStatus(){
+        $.ajax({
+          contentType:"UTF-8",
+          type:"post",
+          url:"http://localhost:8080/CameraManager/CameraStatus",
+          success : function(data){
+         	 console.log(data);
+         	 var list = ['camera#5,01:f3:45:67:89:ab,192.168.10.97,ON', 'camera#6,rt:23:45:67:89:ab,192.168.10.98,ON']
+         	 genRows(data.split(' '));
+          },error:function(req,msg){
+         	 console.log(msg);
+          }
+        });
       }
+      
+      function genRows(list) {
+    	  var html = '';
+    	  for (var i = 0; i < list.length; i++) {
+    		  var tmpList = list[i].split(',');
+    		  html += '<tr>';
+    		  html += '<td>' + tmpList[0] + '</td>'; // cameraID
+    		  html += '<td>' + tmpList[1] + '</td>'; // mac
+    		  html += '<td>' + tmpList[2] + '</td>'; // ip
+    		  if (tmpList[3] == 'ON') {
+    			  html += '<td class="text-success">ON</td>';
+    			  html += '<td><button type="button" class="btn btn-success">Preview</button></td>';
+    		  } else {
+    			  html += '<td class="text-danger">OFF</td>';
+    			  html += '<td><button type="button" class="btn btn-warning">Preview</button></td>';
+    		  }
+    		  html += '</tr>';
+    	  }
+    	  
+    	  $("#test").append(html);
+      }
+
       </script>
-  <body onload="javascript: show()">
+  <body onload="javascript: getCameraStatus()">
     <div>
       <center><h3>Overview</h3></center>
       <br/>
       <table class="table .table-condensed">
-        <tbody>
+        <tbody id="test">
           <tr>
             <td>CameraNumbers</td>
             <td>MacAddress</td>
             <td>IPAddress</td>
             <td>Status</td>
             <td>Preview</td>
-            <td>Push</td>
           </tr>
           <tr>
             <td>Amba#1</td>
@@ -47,7 +70,6 @@
             <td>192.168.10.97</td>
             <td class="text-danger">OFF</td>
             <td><button type="button" class="btn btn-warning">Preview</button></td>
-            <td><button type="button" class="btn btn-warning">Push</button></td>
           </tr>
           <tr>
             <td>Amba#2</td>
@@ -55,7 +77,6 @@
             <td>192.168.10.98</td>
             <td class="text-success">ON</td>
             <td><button type="button" class="btn btn-success">Preview</button></td>
-            <td><button type="button" class="btn btn-primary">Push</button></td>
           </tr>
           <tr>
             <td>Amba#3</td>
@@ -63,7 +84,6 @@
             <td>192.168.10.99</td>
             <td class="text-danger">OFF</td>
             <td><button type="button" class="btn btn-warning">Preview</button></td>
-            <td><button type="button" class="btn btn-warning">Push</button></td>
           </tr>
           <tr>
             <td>Amba#4</td>
@@ -71,7 +91,6 @@
             <td>192.168.10.100</td>
             <td class="text-success">ON</td>
             <td><button type="button" class="btn btn-success">Preview</button></td>
-            <td><button type="button" class="btn btn-info">Push</button></td>
           </tr>
         </tbody>
       </table>
