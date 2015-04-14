@@ -21,7 +21,6 @@
           url:"http://localhost:8080/CameraManager/CameraStatus",
           success : function(data){
          	 console.log(data);
-         	 var list = ['camera#5,01:f3:45:67:89:ab,192.168.10.97,ON', 'camera#6,rt:23:45:67:89:ab,192.168.10.98,ON']
          	 genRows(data.split(' '));
           },error:function(req,msg){
          	 console.log(msg);
