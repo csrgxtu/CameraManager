@@ -39,13 +39,13 @@
     		  html += '<td>' + tmpList[2] + '</td>'; // ip
     		  if (tmpList[4] === 'ON') {
     			  html += '<td class="text-success">ON</td>';
-    			  html += '<td><a class="btn btn-success" href="player.jsp?name=' + tmpList[0] + '" role="button" target="_blank">Preview</a></td>';
     			  html += '<td><button id="' + tmpList[0] + '" type="button" class="btn btn-success" onclick="onPush(\'' + tmpList[2] + '\', \'' + tmpList[0] + '\')">Push</td>';
+    			  html += '<td><a id="' + tmpList[0] + 'Preview" class="btn btn-warning" href="player.jsp?name=' + tmpList[0] + '" role="button" target="_blank">Preview</a></td>';
     		  } else {
     			  // unclickable
     			  html += '<td class="text-danger">OFF</td>';
-    			  html += '<td><button type="button" class="btn btn-warning">Preview</button></td>'
-    			  html += '<td><button id="' + tmpList[0] + '" type="button" class="btn btn-warning" onclick="onPush()">Push</button></td>'
+    			  html += '<td><button id="' + tmpList[0] + '" type="button" class="btn btn-danger" onclick="onPush()">Push</button></td>'
+    			  html += '<td><button type="button" class="btn btn-danger">Preview</button></td>'
     		  }
     		  html += '</tr>';
     	  }
@@ -63,6 +63,7 @@
  	            success : function(data){
  	            	// TO-DO
  	            	$("#" + cameraID).attr("class", "btn btn-info");
+ 	            	$("#" + cameraID + "Preview").attr("class", "btn btn-success");
  	            },error:function(req, msg){
  	             console.log(msg);
  	            }
@@ -84,24 +85,16 @@
             <td>MacAddress</td>
             <td>IPAddress</td>
             <td>Status</td>
-            <td>Preview</td>
             <td>Push</td>
+            <td>Preview</td>
           </tr>
           <tr>
             <td>Hisen#1</td>
             <td>01:f3:45:67:89:ab</td>
             <td>192.168.10.97</td>
             <td class="text-danger">OFF</td>
-            <td><a class="btn btn-warning" href="player.jsp" role="button" target="_blank">Preview</a></td>
-            <td><button type="button" class="btn btn-warning">Push</button></td>
-          </tr>
-          <tr>
-            <td>Hisen#2</td>
-            <td>rt:23:45:67:89:ab</td>
-            <td>192.168.10.98</td>
-            <td class="text-success">ON</td>
-            <td><button type="button" class="btn btn-success">Preview</button></td>
-            <td><button type="button" class="btn btn-success">Push</button></td>
+            <td><button type="button" class="btn btn-danger">Push</button></td>
+            <td><a class="btn btn-danger" href="player.jsp" role="button" target="_blank">Preview</a></td>
           </tr>
         </tbody>
       </table>
