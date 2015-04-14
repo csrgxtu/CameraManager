@@ -40,7 +40,6 @@ public class CameraStatus extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 	  PrintWriter pw = response.getWriter();
 	  
-	  String res = "{recs: [";
 	  // first, get all devices
 	  String[][] cameras = new String[][]{
 	      {"camera#1", "01:f3:45:67:89:ab", "192.168.10.97", "554"},
@@ -51,20 +50,18 @@ public class CameraStatus extends HttpServlet {
 	  };
 	  
 	  // second, get the online info
+	  String res = "";
 	  for (int i = 0; i < cameras.length; i++) {
+	    res += cameras[i][0] + "," + cameras[i][1] + "," + cameras[i][2] + "," + cameras[i][3] + ",";
 	    CameraState cs = new CameraState(cameras[i][2], Integer.parseInt(cameras[i][3]));
 	    if (cs.isOnLine()) {
-	      res += "{cameraID: '" + cameras[i][0] + "', mac: '"
-	          + cameras[i][1] + "', ip: '" + cameras[i][2]
-	          + "', port: '" + cameras[i][3] + "', status: 'ON'},";
+	      res += "ON ";
 	    } else {
-        res += "{cameraID: '" + cameras[i][0] + "', mac: '"
-            + cameras[i][1] + "', ip: '" + cameras[i][2]
-            + "', port: '" + cameras[i][3] + "', status: 'OFF'},";
+	      res += "OFF ";
 	    }
 	  }
-    res = res.substring(0, res.length() - 1);
-    res += "]}";
+	  res = res.substring(0, res.length() - 1);
+    
     System.out.println(res);
     
     pw.write(res);
