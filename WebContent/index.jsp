@@ -39,12 +39,13 @@
     		  html += '<td>' + tmpList[2] + '</td>'; // ip
     		  if (tmpList[4] === 'ON') {
     			  html += '<td class="text-success">ON</td>';
-    			  html += '<td><a class="btn btn-success" href="player.jsp?name=" role="button" target="_blank">Preview</a></td>';
+    			  html += '<td><a class="btn btn-success" href="player.jsp?name=' + tmpList[0] + '" role="button" target="_blank">Preview</a></td>';
     			  html += '<td><button type="button" class="btn btn-success">Push</td>';
     		  } else {
+    			  // unclickable
     			  html += '<td class="text-danger">OFF</td>';
-    			  html += '<td><a class="btn btn-warning" href="player.jsp?name=" role="button" target="_blank">Preview</a></td>';
-    			  html += '<td><button type="button" class="btn btn-warning">Push</td>'
+    			  html += '<td><button type="button" class="btn btn-warning">Preview</button></td>'
+    			  html += '<td><button type="button" class="btn btn-warning">Push</button></td>'
     		  }
     		  html += '</tr>';
     	  }
