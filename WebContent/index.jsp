@@ -32,16 +32,19 @@
     	  var html = '';
     	  for (var i = 0; i < list.length; i++) {
     		  var tmpList = list[i].split(',');
+    		  console.log(tmpList);
     		  html += '<tr>';
     		  html += '<td>' + tmpList[0] + '</td>'; // cameraID
     		  html += '<td>' + tmpList[1] + '</td>'; // mac
     		  html += '<td>' + tmpList[2] + '</td>'; // ip
-    		  if (tmpList[3] == 'ON') {
+    		  if (tmpList[4] === 'ON') {
     			  html += '<td class="text-success">ON</td>';
-    			  html += '<td><a class="btn btn-success" href="player.jsp?name=" role="button">Preview</a></td>';
+    			  html += '<td><a class="btn btn-success" href="player.jsp?name=" role="button" target="_blank">Preview</a></td>';
+    			  html += '<td><button type="button" class="btn btn-success">Push</td>';
     		  } else {
     			  html += '<td class="text-danger">OFF</td>';
-    			  html += '<td><a class="btn btn-warning" href="player.jsp?name=" role="button">Preview</a></td>';
+    			  html += '<td><a class="btn btn-warning" href="player.jsp?name=" role="button" target="_blank">Preview</a></td>';
+    			  html += '<td><button type="button" class="btn btn-warning">Push</td>'
     		  }
     		  html += '</tr>';
     	  }
@@ -62,20 +65,23 @@
             <td>IPAddress</td>
             <td>Status</td>
             <td>Preview</td>
+            <td>Push</td>
           </tr>
           <tr>
-            <td>Amba#1</td>
+            <td>Hisen#1</td>
             <td>01:f3:45:67:89:ab</td>
             <td>192.168.10.97</td>
             <td class="text-danger">OFF</td>
-            <td><a class="btn btn-warning" href="player.jsp" role="button">Preview</a></td>
+            <td><a class="btn btn-warning" href="player.jsp" role="button" target="_blank">Preview</a></td>
+            <td><button type="button" class="btn btn-warning">Push</button></td>
           </tr>
           <tr>
-            <td>Amba#2</td>
+            <td>Hisen#2</td>
             <td>rt:23:45:67:89:ab</td>
             <td>192.168.10.98</td>
             <td class="text-success">ON</td>
             <td><button type="button" class="btn btn-success">Preview</button></td>
+            <td><button type="button" class="btn btn-success">Push</button></td>
           </tr>
         </tbody>
       </table>
