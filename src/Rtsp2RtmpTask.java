@@ -12,7 +12,7 @@ import com.hnebang.android.ebrtsp2livelib.RtspH264Processor;
 public class Rtsp2RtmpTask implements Runnable {
   private String rtspUrl;
   private String rtmpUrl;
-  private String rtmpUrlParams = "";
+  private String rtmpUrlParams = "?createdBy=LIUHB&zaiQingId=1&videoType=1&organizationId=380c59ba34aa4e879f60d3fb228bb934";
   
   public Rtsp2RtmpTask(String rtspUrl, String rtmpUrl) {
     this.rtspUrl = rtspUrl;

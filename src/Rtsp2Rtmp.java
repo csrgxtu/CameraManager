@@ -34,7 +34,7 @@ public class Rtsp2Rtmp extends HttpServlet {
 		String IP = request.getParameter("ip");
 		String cameraID = request.getParameter("cameraID");
 		String rtspUrl = "rtsp://" + IP + ":554/AmbaStreamTest";
-		String rtmpUrl = "127.0.0.1:1935/live/" + cameraID;
+		String rtmpUrl = "42.48.85.119:1935/appname/" + cameraID;
 		
 		System.out.println(IP + " " + cameraID);
 		System.out.println(rtspUrl);
