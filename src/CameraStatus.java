@@ -50,6 +50,11 @@ public class CameraStatus extends HttpServlet {
 	  jsonString += "]}";
 	  pw.write(jsonString);
 	  pw.flush();
+	  
+	  // first, get all devices status
+	  
+	  // second, get the online info
+	  
 	}
 
 	/**
