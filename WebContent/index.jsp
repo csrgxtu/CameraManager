@@ -20,8 +20,9 @@
              type:"post",
              url:"http://localhost:8080/CameraManager/CameraStatus",
              success : function(data){
+            	 var obj = JSON.parse(data);
+            	 console.log(obj.recs);
             	 console.log(data);
-            	 console.log(JSON.parse(data));
              },error:function(req,msg){
             	 console.log(msg);
              }
