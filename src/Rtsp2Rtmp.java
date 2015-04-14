@@ -33,14 +33,14 @@ public class Rtsp2Rtmp extends HttpServlet {
 		PrintWriter pw = response.getWriter();
 		String IP = request.getParameter("ip");
 		String cameraID = request.getParameter("cameraID");
-		//String rtspUrl = "rtsp://" + IP + ":554/AmbaStreamTest";
-		//String rtmpUrl = "rtmp://127.0.0.1:1935/live/" + cameraID;
+		String rtspUrl = "rtsp://" + IP + ":554/AmbaStreamTest";
+		String rtmpUrl = "rtmp://127.0.0.1:1935/live/" + cameraID;
 		
 		System.out.println(IP + " " + cameraID);
 		
-//		ProcessorCallback callback = new ProcessorCallback();
-		//RtspH264Processor h264Processor = new RtspH264Processor(null, rtspUrl);
-		//h264Processor.asyncStartPublish(rtmpUrl, "");
+		ProcessorCallback callback = new ProcessorCallback();
+		RtspH264Processor h264Processor = new RtspH264Processor(callback, rtspUrl);
+		h264Processor.asyncStartPublish(rtmpUrl, "");
 		
 		pw.write("OK");
 		pw.flush();
