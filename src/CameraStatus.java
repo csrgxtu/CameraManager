@@ -16,6 +16,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import java.util.ArrayList;
+
 
 /**
  * Servlet implementation class CameraStatus
@@ -37,24 +39,36 @@ public class CameraStatus extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 	  PrintWriter pw = response.getWriter();
-	  String jsonString = "{recs: [";
-	  for (int i = 0; i < 4; i++) {
-	    CameraState cs = new CameraState("127.0.0.1", 8080);
-	    if (cs.isOnLine()) {
-	      jsonString += "{cameraID: 'camera#" + i + "', Status: 'ON', Push: 0},";
-	    } else {
-	      jsonString += "{cameraID: 'camera#" + i + "', Status: 'OFF', Push: 0},";
-	    }
-	  }
-	  jsonString = jsonString.substring(0, jsonString.length() - 1);
-	  jsonString += "]}";
-	  pw.write(jsonString);
-	  pw.flush();
 	  
-	  // first, get all devices status
+	  String res = "{recs: [";
+	  // first, get all devices
+	  String[][] cameras = new String[][]{
+	      {"camera#1", "01:f3:45:67:89:ab", "192.168.10.97", "554"},
+	      {"camera#2", "rt:23:45:67:89:ab", "192.168.10.98", "554"},
+	      {"camera#3", "df:23:45:67:89:ab", "192.168.10.99", "554"},
+	      {"camera#4", "0f:f3:45:67:89:ab", "192.168.10.100", "554"},
+	      {"camera#5", "df:53:45:67:d9:ab", "192.168.10.101", "554"}
+	  };
 	  
 	  // second, get the online info
-	  
+	  for (int i = 0; i < cameras.length; i++) {
+	    CameraState cs = new CameraState(cameras[i][2], Integer.parseInt(cameras[i][3]));
+	    if (cs.isOnLine()) {
+	      res += "{cameraID: '" + cameras[i][0] + "', mac: '"
+	          + cameras[i][1] + "', ip: '" + cameras[i][2]
+	          + "', port: '" + cameras[i][3] + "', status: 'ON'},";
+	    } else {
+        res += "{cameraID: '" + cameras[i][0] + "', mac: '"
+            + cameras[i][1] + "', ip: '" + cameras[i][2]
+            + "', port: '" + cameras[i][3] + "', status: 'OFF'},";
+	    }
+	  }
+    res.substring(0, res.length() - 1);
+    res += "]}";
+    System.out.println(res);
+    
+    pw.write(res);
+    pw.flush();
 	}
 
 	/**

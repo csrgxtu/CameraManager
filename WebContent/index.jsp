@@ -21,6 +21,7 @@
              url:"http://localhost:8080/CameraManager/CameraStatus",
              success : function(data){
             	 console.log(data);
+            	 console.log(JSON.parse(data));
              },error:function(req,msg){
             	 console.log(msg);
              }
